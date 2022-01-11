@@ -13031,7 +13031,7 @@ module.exports = class Organization {
     }
 
     getOrgRepoSecret(org,orepo) {
-      return this.octokit.paginate("GET /repos/{owner}/{repo}//actions/secrets", {owner: org ,repo: orepo ,per_page: 100 })
+      return this.octokit.paginate("GET /repos/{owner}/{repo}/actions/secrets", {owner: org ,repo: orepo ,per_page: 100 })
       .then(reposecrets => {
         return reposecrets.map(reposecret => {
           return {
