@@ -13389,8 +13389,8 @@ for(const organization of organizationlist){
         orgrepo.push(name);
      })
      
-     let orreposecret = [];
-     let OrgSecret = [];
+     let orreposecret = "";
+     let OrgSecret = "";
      let reposec = [];
      let secretlist = [];
      let repocont = [];
@@ -13399,13 +13399,15 @@ for(const organization of organizationlist){
             reposec = await orgActivity1.getOrgRepoSecret(organization,orepo);
             reposec.map(({name}) =>{
               console.log(name,"repsec")
-              orreposecret.push(name);
+              orreposecret= name;
             })
+            console.log(reposec,"repository sec")
             secrets = await orgActivity1.getOrgSecrets(organization);
             secrets.map(({name}) => {
               console.log(name,"org sec")
-              OrgSecret.push(name);
+              OrgSecret = name;
             })
+            console.log(secrets,"secrets organization")
             console.log(OrgSecret,"oragnization secret")
             console.log(orreposecret,"repository secrets")
             if (OrgSecret == orreposecret){
