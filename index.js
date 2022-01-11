@@ -49,8 +49,12 @@ for(const organization of organizationlist){
   const orgsComments = await orgActivity.getOrgsValid(organization);
   if(orgsComments.status !== 'error') {
        
-       //member = await orgActivity1.getOrgMembers(organization);
-       orgrepos = await orgActivity1.getOrgRepositories(organization);
+       secrets = await orgActivity1.getOrgSecrets(organization);
+       secrets.map(({name}) => {
+         console.log(name)
+         OrgSecret = name;  
+       })
+       orgrepos = await orgActivity1.getOrgSecretSelectedRepo(organization,OrgSecret);
   
        console.log(orgrepos);
        

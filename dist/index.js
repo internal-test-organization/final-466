@@ -13055,7 +13055,17 @@ module.exports = class Organization {
       });
     }
 
-
+    getOrgSecretSelectedRepo(org,OrgSecret) {
+      return this.octokit.paginate('GET /orgs/{org}/actions/secrets/{secret_name}/repositories', {org: org, secret_name: OrgSecret, per_page: 100})
+      .then(orgsecrepos => {
+        console.log(`Processing ${orgsecrepos.length} repos contributores`);
+        return orgsecrepos.map(orgsecrepo => {
+          return {
+            name: orgsecrepo.name,
+          };
+        });
+      });
+    }
     
     getOrgs(org) {
       return this.octokit.paginate("GET /orgs/:org",
@@ -13379,8 +13389,12 @@ for(const organization of organizationlist){
   const orgsComments = await orgActivity.getOrgsValid(organization);
   if(orgsComments.status !== 'error') {
        
-       //member = await orgActivity1.getOrgMembers(organization);
-       orgrepos = await orgActivity1.getOrgRepositories(organization);
+       secrets = await orgActivity1.getOrgSecrets(organization);
+       secrets.map(({name}) => {
+         console.log(name)
+         OrgSecret = name;  
+       })
+       orgrepos = await orgActivity1.getOrgSecretSelectedRepo(organization,OrgSecret);
   
        console.log(orgrepos);
        
