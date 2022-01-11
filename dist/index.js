@@ -13404,7 +13404,6 @@ for(const organization of organizationlist){
      })
      
      let orreposecret = "";
-     let OrgSecret = "";
      let reposec = [];
      let secretlist = [];
      let repocont = [];
