@@ -36,11 +36,12 @@ const octokit = githubClient.create(token, maxRetries)
 
 //***start */
 let organizationlist = organizationinp.split(',');
-let OrgSecret = [];
 let repos = [];
 let members = [];
 let finaloutput = [];
 let orgrepo = [];
+let orgrepos = [];
+
 
 console.log(organizationlist)
 for(const organization of organizationlist){
@@ -58,11 +59,13 @@ for(const organization of organizationlist){
         orgrepo.push(name);
      })
      
-     
+     let orreposecret = [];
+     let OrgSecret = [];
+     let reposec = [];
      let secretlist = [];
      for(const orepo  of orgrepo){
-            repos = await orgActivity1.getOrgRepoSecret(organization,orepo);
-            repos.map(({name}) =>{
+            reposec = await orgActivity1.getOrgRepoSecret(organization,orepo);
+            reposec.map(({name}) =>{
               console.log(name)
               orreposecret.push(name);
             })
