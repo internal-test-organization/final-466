@@ -68,21 +68,21 @@ for(const organization of organizationlist){
      for(const orepo  of orgrepo){
             reposec = await orgActivity1.getOrgRepoSecret(organization,orepo);
             reposec.map(({name}) =>{
-              console.log(name)
+              console.log(name,"repsec")
               orreposecret.push(name);
             })
             secrets = await orgActivity1.getOrgSecrets(organization);
             secrets.map(({name}) => {
-              console.log(name)
+              console.log(name,"org sec")
               OrgSecret.push(name);
             })
-            console.log(OrgSecret)
-            console.log(orreposecret)
+            console.log(OrgSecret,"oragnization secret")
+            console.log(orreposecret,"repository secrets")
             if (OrgSecret == orreposecret){
                 console.log(`Both ${OrgSecret} and ${orreposecret} are same.......Retreive repo secret`)
                 repoconts = await orgActivity1.getRepoContributor(organization,orepo)
                 repoconts.map(({name}) =>{
-                  console.log(name)
+                  console.log(name,"contributor")
                   repocont.push(name);
                 })
             }
