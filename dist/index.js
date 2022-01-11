@@ -13430,7 +13430,7 @@ function saveIntermediateData(directory, data) {
   }
 }
 
-core.setOutput('repos', repos);
+core.setOutput('repos',orgrepos);
 core.setOutput('secret',secrets);
 core.setOutput('report',finaloutput);
 }
