@@ -1,0 +1,29 @@
+{
+  "name": "list-repo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mosesbalaji/List-repo.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mosesbalaji/List-repo/issues"
+  },
+  "homepage": "https://github.com/mosesbalaji/List-repo#readme",
+  "dependencies": {
+    "@actions/core": "^1.6.0",
+    "@actions/github": "^5.0.0",
+    "@actions/io": "^1.1.1",
+    "@octokit/rest": "^18.12.0",
+    "fs": "^0.0.1-security",
+    "json2csv": "^5.0.6",
+    "octokit": "^1.7.1"
+  }
+}

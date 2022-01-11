@@ -1,0 +1,47 @@
+# This is a basic workflow to help you get started with Actions
+
+name: List repo
+
+# Controls when the workflow will run
+on:
+  workflow_dispatch:
+    inputs:
+      action_branch:
+        description: The branch of the action to use
+        default: main
+
+      organization:
+        description: The organization to process
+        default: elohimdigi
+
+jobs:
+  orgs:
+    name: Analyze Organization
+    
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout Action
+        uses: actions/checkout@v2
+        with:
+          ref: ${{ github.event.inputs.action_branch }}
+        
+      - name: Analyze organization
+        id: analyze_org
+        uses: ./
+        with:
+          token: ${{ secrets.OCTODEMO_TEMP_TOKEN }}
+          organization: ${{ github.event.inputs.organization }}
+          
+      - name: Results
+        run: |
+          echo "repos - ${{ steps.analyze_org.outputs.repos }}"
+          echo "secret - ${{ steps.analyze_org.outputs.secret }}"
+          echo "report - ${{ steps.analyze_org.outputs.report }}"
+      - name: Attach Artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: reports
+          path: |
+            ${{ steps.analyze_org.outputs.report_json }}
+
