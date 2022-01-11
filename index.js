@@ -41,7 +41,7 @@ let members = [];
 let finaloutput = [];
 let orgrepo = [];
 let orgrepos = [];
-
+let OrgSecret = "";
 
 console.log(organizationlist)
 for(const organization of organizationlist){
