@@ -13416,11 +13416,10 @@ for(const organization of organizationlist){
                 repoconts.map(({name}) =>{
                   console.log(name,"contributor")
                   repocont.push(name);
+                  finaloutput.push({name:orepo,maintainer:name,"org-secrets-overriden":OrgSecret,message:"org secrets overriden"})
                 })
             }
-            for( const repo of orgrepo) {
-              finaloutput.push({name:repo.name,maintainer:repocont.name,"org-secrets-overriden":secrets.name,message:"org secrets overriden"})
-            }
+            
       }
       
   }
