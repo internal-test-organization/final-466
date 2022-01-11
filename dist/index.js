@@ -13022,6 +13022,7 @@ module.exports = class Organization {
     getOrgMembers(org) {
       return this.octokit.paginate("GET /orgs/:org/members", {org: org, per_page: 100})
         .then(members => {
+          console.log(`Processing ${members.length} repos`);
           return members.map(member => {
             return {
               login: member.login,
@@ -13033,6 +13034,7 @@ module.exports = class Organization {
     getOrgRepoSecret(org,orepo) {
       return this.octokit.paginate("GET /repos/{owner}/{repo}/actions/secrets", {owner: org ,repo: orepo ,per_page: 100 })
       .then(reposecrets => {
+        console.log(`Processing ${reposecrets.length} repos`);
         return reposecrets.map(reposecret => {
           return {
             name: reposecret.name,
@@ -13044,6 +13046,7 @@ module.exports = class Organization {
     getRepoContributor(org,repo) {
       return this.octokit.paginate('GET /repos/{owner}/{repo}/contributors', { owner: org ,repo: repo ,per_page: 100})
       .then(repocontributors => {
+        console.log(`Processing ${repocontributors.length} repos`);
         return repocontributors.map(repocontributor => {
           return {
             name: repocontributor.login,
@@ -13378,7 +13381,7 @@ for(const organization of organizationlist){
        //member = await orgActivity1.getOrgMembers(organization);
        orgrepos = await orgActivity1.getOrgRepositories(organization);
   
-       console.log(orgrepo);
+       console.log(orgrepos);
        
        orgrepos.map(({name}) => {
         console.log(name)
@@ -13396,9 +13399,9 @@ for(const organization of organizationlist){
             secrets = await orgActivity1.getOrgSecrets(organization);
             secrets.map(({name}) => {
               console.log(name)
-              orgsecret.push(name);
+              OrgSecret.push(name);
             })
-            if ( orgsecret == orreposecret) {
+            if (OrgSecret == orreposecret) {
                 repoconts = await orgActivity1.getRepoContributor(organization,orepo)
                 repoconts.map(({name}) =>{
                   console.log(name)

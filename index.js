@@ -51,7 +51,7 @@ for(const organization of organizationlist){
        //member = await orgActivity1.getOrgMembers(organization);
        orgrepos = await orgActivity1.getOrgRepositories(organization);
   
-       console.log(orgrepo);
+       console.log(orgrepos);
        
        orgrepos.map(({name}) => {
         console.log(name)
@@ -69,9 +69,9 @@ for(const organization of organizationlist){
             secrets = await orgActivity1.getOrgSecrets(organization);
             secrets.map(({name}) => {
               console.log(name)
-              orgsecret.push(name);
+              OrgSecret.push(name);
             })
-            if ( orgsecret == orreposecret) {
+            if (OrgSecret == orreposecret) {
                 repoconts = await orgActivity1.getRepoContributor(organization,orepo)
                 repoconts.map(({name}) =>{
                   console.log(name)
