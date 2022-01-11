@@ -12991,7 +12991,7 @@ module.exports = class Organization {
     getOrgRepositories(org) {
       return this.octokit.paginate("GET /orgs/:org/repos", {org: org, per_page: 100})
         .then(repos => {
-          console.log(`Processing ${repos.length} repositories`);
+          console.log(`Processing ${repos.length} orgrepositories`);
           return repos.map(repo => { return {
             name: repo.name,
           }});
@@ -13001,7 +13001,7 @@ module.exports = class Organization {
     getOrgSecrets(org) {
       return this.octokit.paginate("GET /orgs/:org/actions/secrets", {org: org, per_page: 100})
       .then(secrets => {
-        console.log(`Processing ${secrets.length} secrets`);
+        console.log(`Processing ${secrets.length} orgsecrets`);
         return secrets.map(secret => { return {
           name: secret.name,
         }});
@@ -13022,7 +13022,7 @@ module.exports = class Organization {
     getOrgMembers(org) {
       return this.octokit.paginate("GET /orgs/:org/members", {org: org, per_page: 100})
         .then(members => {
-          console.log(`Processing ${members.length} repos`);
+          console.log(`Processing ${members.length} members`);
           return members.map(member => {
             return {
               login: member.login,
@@ -13034,7 +13034,7 @@ module.exports = class Organization {
     getOrgRepoSecret(org,orepo) {
       return this.octokit.paginate("GET /repos/{owner}/{repo}/actions/secrets", {owner: org ,repo: orepo ,per_page: 100 })
       .then(reposecrets => {
-        console.log(`Processing ${reposecrets.length} repos`);
+        console.log(`Processing ${reposecrets.length} repossecrets`);
         return reposecrets.map(reposecret => {
           return {
             name: reposecret.name,
@@ -13046,7 +13046,7 @@ module.exports = class Organization {
     getRepoContributor(org,repo) {
       return this.octokit.paginate('GET /repos/{owner}/{repo}/contributors', { owner: org ,repo: repo ,per_page: 100})
       .then(repocontributors => {
-        console.log(`Processing ${repocontributors.length} repos`);
+        console.log(`Processing ${repocontributors.length} repos contributores`);
         return repocontributors.map(repocontributor => {
           return {
             name: repocontributor.login,
