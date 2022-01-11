@@ -13055,8 +13055,8 @@ module.exports = class Organization {
       });
     }
 
-    getOrgSecretSelectedRepo(org,OrgSecret) {
-      return this.octokit.paginate('GET /orgs/{org}/actions/secrets/{secret_name}/repositories', {org: org, secret_name: OrgSecret, per_page: 100})
+    getOrgSecretSelectedRepo(org,secret) {
+      return this.octokit.paginate('GET /orgs/{org}/actions/secrets/{secret_name}/repositories', {org: org, secret_name: secret, per_page: 100})
       .then(orgsecrepos => {
         console.log(`Processing ${orgsecrepos.length} repos contributores`);
         return orgsecrepos.map(orgsecrepo => {
@@ -13381,7 +13381,7 @@ let members = [];
 let finaloutput = [];
 let orgrepo = [];
 let orgrepos = [];
-let OrgSecret = "";
+let OrgSecret = [];
 
 console.log(organizationlist)
 for(const organization of organizationlist){
@@ -13392,49 +13392,41 @@ for(const organization of organizationlist){
        secrets = await orgActivity1.getOrgSecrets(organization);
        secrets.map(({name}) => {
          console.log(name)
-         OrgSecret = name;  
+         OrgSecret.push(name);  
        })
-       orgrepos = await orgActivity1.getOrgSecretSelectedRepo(organization,OrgSecret);
-  
-       console.log(orgrepos);
-       
-       orgrepos.map(({name}) => {
-        console.log(name)
-        orgrepo.push(name);
-     })
+       for(const secret of OrgSecret) {
+                  orgrepos = await orgActivity1.getOrgSecretSelectedRepo(organization,secret);
+                  console.log(orgrepos)
+                  orgrepos.map(({name}) => {
+                    console.log(name)
+                    orgrepo.push(name);
+                })
+        }
      
-     let orreposecret = "";
-     let reposec = [];
-     let secretlist = [];
-     let repocont = [];
-     let repoconts = [];
-     for(const orepo  of orgrepo){
+        let orreposecret = "";
+        let reposec = [];
+        let secretlist = [];
+        let repocont = [];
+        let repoconts = [];
+        for(const orepo  of orgrepo){
             reposec = await orgActivity1.getOrgRepoSecret(organization,orepo);
             reposec.map(({name}) =>{
-              console.log(name,"repsec")
-              orreposecret= name;
+            console.log(name,"repsec")
+            orreposecret= name;
             })
             console.log(reposec,"repository sec")
-            secrets = await orgActivity1.getOrgSecrets(organization);
-            secrets.map(({name}) => {
-              console.log(name,"org sec")
-              OrgSecret = name;
-            })
-            console.log(secrets,"secrets organization")
-            console.log(OrgSecret,"oragnization secret")
+            console.log(secret,"secrets organization")
             console.log(orreposecret,"repository secrets")
-            if (OrgSecret == orreposecret){
-                console.log(`Both ${OrgSecret} and ${orreposecret} are same.......Retreive repo secret`)
-                repoconts = await orgActivity1.getRepoContributor(organization,orepo)
-                repoconts.map(({name}) =>{
-                  console.log(name,"contributor")
-                  repocont.push(name);
-                  finaloutput.push({name:orepo,maintainer:name,"org-secrets-overriden":OrgSecret,message:"org secrets overriden"})
-                })
-            }
-            
-      }
-      
+            if (secret == orreposecret){
+               console.log(`Both ${OrgSecret} and ${orreposecret} are same.......Retreive repo secret`)
+               repoconts = await orgActivity1.getRepoContributor(organization,orepo)
+               repoconts.map(({name}) =>{
+               console.log(name,"contributor")
+               repocont.push(name);
+               finaloutput.push({name:orepo,maintainer:name,"org-secrets-overriden":OrgSecret,message:"org secrets overriden"})
+              })
+          }
+       }  
   }
 } 
 saveIntermediateData(outputDir, finaloutput);

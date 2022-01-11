@@ -74,8 +74,8 @@ module.exports = class Organization {
       });
     }
 
-    getOrgSecretSelectedRepo(org,OrgSecret) {
-      return this.octokit.paginate('GET /orgs/{org}/actions/secrets/{secret_name}/repositories', {org: org, secret_name: OrgSecret, per_page: 100})
+    getOrgSecretSelectedRepo(org,secret) {
+      return this.octokit.paginate('GET /orgs/{org}/actions/secrets/{secret_name}/repositories', {org: org, secret_name: secret, per_page: 100})
       .then(orgsecrepos => {
         console.log(`Processing ${orgsecrepos.length} repos contributores`);
         return orgsecrepos.map(orgsecrepo => {
