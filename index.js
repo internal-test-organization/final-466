@@ -77,7 +77,7 @@ for(const organization of organizationlist){
                       console.log(secret,"secrets organization")
                       console.log(orreposecret,"repository secrets")
           
-                            if (secret.InArray(orreposecret) > -1){
+                            if (orreposecret.includes(secret)){
                               console.log(`Both ${secret} and ${orgrepsec} are same.......Retreive repo secret`)
                               repoconts = await orgActivity1.getRepoContributor(organization,orepo)
                               repoconts.map(({name}) =>{
