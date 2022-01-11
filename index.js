@@ -88,10 +88,11 @@ for(const organization of organizationlist){
                   repocont.push(name);
                 })
             }
+            for( const repo of orgrepo) {
+              finaloutput.push({name:repo.name,maintainer:repocont.name,"org-secrets-overriden":secrets.name,message:"org secrets overriden"})
+            }
       }
-      for( const repo of reposec) {
-        finaloutput.push({name:repo.name,maintainer:repocont.name,"org-secrets-overriden":secrets.name,message:"org secrets overriden"})
-      }
+      
   }
 } 
 saveIntermediateData(outputDir, finaloutput);
