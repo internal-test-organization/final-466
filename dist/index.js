@@ -13382,7 +13382,6 @@ let finaloutput = [];
 let orgrepo = [];
 let orgrepos = [];
 let OrgSecret = [];
-let secretn = "";
 console.log(organizationlist)
 for(const organization of organizationlist){
   console.log(`Attempting to generate ${organization} - user activity data, this could take some time...`);
@@ -13401,10 +13400,7 @@ for(const organization of organizationlist){
                     console.log(name)
                     orgrepo.push(name);
                   })
-                  secret.map(({secret}) => {
-                    console.log(secret)
-                  secretn = secret;
-                  })
+              
                   let orreposecret = "";
                   let reposec = [];
                   let secretlist = [];
@@ -13420,7 +13416,7 @@ for(const organization of organizationlist){
                       console.log(secret,"secrets organization")
                       console.log(orreposecret,"repository secrets")
                     
-                      if (secretn == orreposecret){
+                      if (secret == orreposecret){
                         console.log(`Both ${OrgSecret} and ${orreposecret} are same.......Retreive repo secret`)
                         repoconts = await orgActivity1.getRepoContributor(organization,orepo)
                         repoconts.map(({name}) =>{
