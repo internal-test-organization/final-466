@@ -12,7 +12,7 @@ on:
 
       organization:
         description: The organization to process
-        default: elohimdigi
+        default: internal-test-organization
 
 jobs:
   orgs:
