@@ -13416,10 +13416,8 @@ for(const organization of organizationlist){
                       console.log(reposec,"repository sec")
                       console.log(secret,"secrets organization")
                       console.log(orreposecret,"repository secrets")
-                      
-                      for(const orgrepsec of orreposecret ) {
-                            console.log(orgrepsec);
-                            if (secret == orgrepsec){
+          
+                            if (secret.InArray(orreposecret) > -1){
                               console.log(`Both ${secret} and ${orgrepsec} are same.......Retreive repo secret`)
                               repoconts = await orgActivity1.getRepoContributor(organization,orepo)
                               repoconts.map(({name}) =>{
@@ -13428,7 +13426,7 @@ for(const organization of organizationlist){
                               finaloutput.push({name:orepo,maintainer:name,"org-secrets-overriden":OrgSecret,message:"org secrets overriden"})
                               })
                             } 
-                       } 
+                       
                     }
        }  
   }
