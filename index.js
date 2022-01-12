@@ -69,25 +69,27 @@ for(const organization of organizationlist){
                   let repoconts = [];
                   for(const orepo  of orgrepo){
                       reposec = await orgActivity1.getOrgRepoSecret(organization,orepo);
-                      reposec.map(({name}) =>{
-                      console.log(name,"repsec")
-                      orreposecret.push(name);
-                      })
+                      
                       console.log(reposec,"repository sec")
                       console.log(secret,"secrets organization")
                       console.log(orreposecret,"repository secrets")
           
-                            if (orreposecret.includes(secret)){
-                              console.log(`Both ${secret} and ${orreposecret} are same.......Retreive repo secret`)
-                              repoconts = await orgActivity1.getRepoContributor(organization,orepo)
-                              repoconts.map(({name}) =>{
-                              console.log(name,"contributor")
-                              repocont.push(name);
-                              finaloutput.push({name:orepo,maintainer:name,"org-secrets-overriden":OrgSecret,message:"org secrets overriden"})
-                              })
-                            } 
+                            
                        
                     }
+                    reposec.map(({name}) =>{
+                      console.log(name,"repsec")
+                      orreposecret.push(name);
+                      })
+                      if (orreposecret.includes(secret)){
+                        console.log(`Both ${secret} and ${orreposecret} are same.......Retreive repo secret`)
+                        repoconts = await orgActivity1.getRepoContributor(organization,orepo)
+                        repoconts.map(({name}) =>{
+                        console.log(name,"contributor")
+                        repocont.push(name);
+                        finaloutput.push({name:orepo,maintainer:name,"org-secrets-overriden":OrgSecret,message:"org secrets overriden"})
+                        })
+                      } 
        }  
   }
 } 
