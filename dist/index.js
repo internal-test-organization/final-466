@@ -13402,7 +13402,7 @@ for(const organization of organizationlist){
                     orgrepo.push(name);
                   })
               
-                  let orreposecret = "";
+                  let orreposecret = [];
                   let reposec = [];
                   let secretlist = [];
                   let repocont = [];
@@ -13411,7 +13411,7 @@ for(const organization of organizationlist){
                       reposec = await orgActivity1.getOrgRepoSecret(organization,orepo);
                       reposec.map(({name}) =>{
                       console.log(name,"repsec")
-                      orreposecret = name;
+                      orreposecret.push(name);
                       })
                       console.log(reposec,"repository sec")
                       console.log(secret,"secrets organization")
