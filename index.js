@@ -88,10 +88,10 @@ for(const organization of organizationlist){
                         repoconts.map(({name}) =>{
                         console.log(name,"contributor")
                         repocont.push(name);
-                        finaloutput.push({name:orepo,maintainer:name,"org-secrets-overriden":OrgSecret,message:"org secrets overriden"})
+                        finaloutput.push({name:orepo,maintainer:name,"org-secrets-overriden":secret,message:"org secrets overriden"})
                         })
                        } 
-                      }
+         }
                       
        }  
   }
