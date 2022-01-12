@@ -13421,15 +13421,15 @@ for(const organization of organizationlist){
                       console.log(name,"repsec")
                       orreposecret.push(name);
                       })
-                      if (orreposecret.includes(secret)){
-                        console.log(`Both ${secret} and ${orreposecret} are same.......Retreive repo secret`)
-                        repoconts = await orgActivity1.getRepoContributor(organization,orepo)
-                        repoconts.map(({name}) =>{
-                        console.log(name,"contributor")
-                        repocont.push(name);
-                        finaloutput.push({name:orepo,maintainer:name,"org-secrets-overriden":OrgSecret,message:"org secrets overriden"})
-                        })
-                      } 
+                      //if (orreposecret.includes(secret)){
+                      //  console.log(`Both ${secret} and ${orreposecret} are same.......Retreive repo secret`)
+                      //  repoconts = await orgActivity1.getRepoContributor(organization,orepo)
+                       // repoconts.map(({name}) =>{
+                       // console.log(name,"contributor")
+                       // repocont.push(name);
+                       // finaloutput.push({name:orepo,maintainer:name,"org-secrets-overriden":OrgSecret,message:"org secrets overriden"})
+                        //})
+                      //} 
        }  
   }
 } 
