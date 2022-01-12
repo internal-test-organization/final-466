@@ -57,6 +57,7 @@ for(const organization of organizationlist){
        for(const secret of OrgSecret) {
                   orgrepos = await orgActivity1.getOrgSecretSelectedRepo(organization,secret);
                   console.log(orgrepos)
+                  console.log(secret,"orgsecret")
                   orgrepos.map(({name}) => {
                     console.log(name)
                     orgrepo.push(name);
