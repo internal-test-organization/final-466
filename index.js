@@ -68,8 +68,8 @@ for(const organization of organizationlist){
                   let secretlist = [];
                   let repocont = [];
                   let repoconts = [];
-                  // for(const orepo  of orgrepo){
-                  //     reposec = await orgActivity1.getOrgRepoSecret(organization,orepo);
+                  for(const orepo  of orgrepo){
+                      reposec = await orgActivity1.getOrgRepoSecret(organization,orepo);
                       
                   //     console.log(reposec,"repository sec")
                   //     console.log(secret,"secrets organization")
@@ -77,7 +77,7 @@ for(const organization of organizationlist){
           
                             
                        
-                  //   }
+                    }
                     reposec.map(({name}) => {
                       console.log(name,"repsec")
                       orreposecret.push(name);
