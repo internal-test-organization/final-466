@@ -56,55 +56,55 @@ for(const organization of organizationlist){
          console.log(name)
          orgSecret.push(name);  
        })
-       for(const item of orgSecret){
-        orgrepos = await orgActivity1.getOrgSecretSelectedRepo(organization,item);
-        console.log(item,"organization repo")
-        console.log(orgrepos)
-        for( const orgrepo of orgrepos){
+      //  for(const item of orgSecret){
+      //   orgrepos = await orgActivity1.getOrgSecretSelectedRepo(organization,item);
+      //   console.log(item,"organization repo")
+      //   console.log(orgrepos)
+      //   for( const orgrepo of orgrepos){
       
-          orgRepoName.push(orgrepo);
-          console.log(orgRepoName)
+      //     orgRepoName.push(orgrepo);
+      //     console.log(orgRepoName)
           
-        }
-       }
-       for(const item of orgRepoName){
-        console.log(item,"organization repo secret")
-        orgreposecrets = await orgActivity1.getOrgRepoSecret(organization,item);
-        for(const orgreposecret of orgreposecrets) {
-                orgRepoSecret.push(orgreposecret);
-        }
-       }
-       console.log(orgRepoSecret.some(item => orgSecret.includes(item)))
+      //   }
+      //  }
+      //  for(const item of orgRepoName){
+      //   console.log(item,"organization repo secret")
+      //   orgreposecrets = await orgActivity1.getOrgRepoSecret(organization,item);
+      //   for(const orgreposecret of orgreposecrets) {
+      //           orgRepoSecret.push(orgreposecret);
+      //   }
+      //  }
+      //  console.log(orgRepoSecret.some(item => orgSecret.includes(item)))
 
        
-      //  for(const secret of OrgSecret) {
-      //             orgrepos = await orgActivity1.getOrgSecretSelectedRepo(organization,secret);
-      //             console.log(orgrepos)
-      //             console.log(secret,"orgsecret")
-      //             orgrepos.map(({name}) => {
-      //               console.log(name)
-      //               orgrepo.push(name);
-      //             })
+       for(const secret of orgSecret) {
+                  orgrepos = await orgActivity1.getOrgSecretSelectedRepo(organization,secret);
+                  console.log(orgrepos)
+                  console.log(secret,"orgsecret")
+                  orgrepos.map(({name}) => {
+                    console.log(name)
+                    orgrepo.push(name);
+                  })
               
-                  // let orreposecret = [];
-                  // let reposec = [];
-                  // let secretlist = [];
-                  // let repocont = [];
-                  // let repoconts = [];
-                  // for(const orepo  of orgrepo){
-                  //     reposec = await orgActivity1.getOrgRepoSecret(organization,orepo);
+                  let orreposecret = [];
+                  let reposec = [];
+                  let secretlist = [];
+                  let repocont = [];
+                  let repoconts = [];
+                  for(const orepo  of orgrepo){
+                      reposec = await orgActivity1.getOrgRepoSecret(organization,orepo);
                       
-                  //     console.log(reposec,"repository sec")
-                  // //     console.log(secret,"secrets organization")
-                  //  //    console.log(orreposecret,"repository secrets")
+                      console.log(reposec,"repository sec")
+                  //     console.log(secret,"secrets organization")
+                   //    console.log(orreposecret,"repository secrets")
           
                             
                        
-                  //   }
-                  //   reposec.map(({name}) => {
-                  //     console.log(name,"repsec")
-                  //     orreposecret.push(name);
-                  //   })
+                    }
+                    reposec.map(({name}) => {
+                      console.log(name,"repsec")
+                      orreposecret.push(name);
+                    })
                    for(const orepo  of orgrepo){
                       console.log(orreposecret,"org repos secret")
                       console.log(secret,"organization secret")
@@ -117,7 +117,7 @@ for(const organization of organizationlist){
                         finaloutput.push({name:orepo,maintainer:name,"org-secrets-overriden":secret,message:"org secrets overriden"})
                         })
                        } 
-         // }
+         }
                       
        }  
   }
