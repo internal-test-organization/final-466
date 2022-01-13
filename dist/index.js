@@ -13382,7 +13382,7 @@ let finaloutput = [];
 let orgrepo = [];
 let orgrepos = [];
 let OrgSecret = [];
-let orreposecret = [];
+
 console.log(organizationlist)
 for(const organization of organizationlist){
   console.log(`Attempting to generate ${organization} - user activity data, this could take some time...`);
@@ -13404,7 +13404,7 @@ for(const organization of organizationlist){
                     orgrepo.push(name);
                   })
               
-                  
+                  let orreposecret = [];
                   let reposec = [];
                   let secretlist = [];
                   let repocont = [];
@@ -13412,9 +13412,9 @@ for(const organization of organizationlist){
                   for(const orepo  of orgrepo){
                       reposec = await orgActivity1.getOrgRepoSecret(organization,orepo);
                       
-                  //     console.log(reposec,"repository sec")
+                      console.log(reposec,"repository sec")
                   //     console.log(secret,"secrets organization")
-                  //     console.log(orreposecret,"repository secrets")
+                   //    console.log(orreposecret,"repository secrets")
           
                             
                        
