@@ -68,10 +68,10 @@ for(const organization of organizationlist){
         }
        }
        for(const item of orgRepoName){
+        console.log(item,"organization repo secret")
         orgreposecrets = await orgActivity1.getOrgRepoSecret(organization,item);
         for(const orgreposecret of orgreposecrets) {
-          console.log(item,"organization repo secret")
-          orgRepoSecret.push(orgreposecret);
+                orgRepoSecret.push(orgreposecret);
         }
        }
        console.log(orgRepoSecret.some(item => orgSecret.includes(item)))
