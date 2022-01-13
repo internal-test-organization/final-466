@@ -13397,7 +13397,7 @@ for(const organization of organizationlist){
          orgSecret.push(name);  
        })
        for(const item of orgSecret){
-        orgrepos = await orgActivity1.getOrgSecretSelectedRepo(organization,item);
+        orgrepos = await orgActivity1.getOrgSecretSelectedRepo(organization,item.name);
         console.log(item)
         console.log(orgrepos)
         for( const orgrepo of orgrepos){
@@ -13408,7 +13408,7 @@ for(const organization of organizationlist){
         }
        }
        for(const item of orgRepoName){
-        orgreposecrets = await orgActivity1.getOrgRepoSecret(organization,item);
+        orgreposecrets = await orgActivity1.getOrgRepoSecret(organization,item.name);
         for(const orgreposecret of orgreposecrets) {
         
           orgRepoSecret.push(orgreposecret);
