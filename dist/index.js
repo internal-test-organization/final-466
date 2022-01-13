@@ -13423,6 +13423,8 @@ for(const organization of organizationlist){
                       orreposecret.push(name);
                     })
                     for(const orepo  of orgrepo){
+                      console.log(orreposecret,"org repos secret")
+                      console.log(secret,"organization secret")
                       if (orreposecret.includes(secret)){
                         console.log(`Both ${secret} and ${orreposecret} are same.......Retreive repo secret`)
                         repoconts = await orgActivity1.getRepoContributor(organization,orepo)
