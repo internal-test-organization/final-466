@@ -58,9 +58,13 @@ for(const organization of organizationlist){
        })
        for(const item of orgSecret){
         orgrepos = await orgActivity1.getOrgSecretSelectedRepo(organization,item);
+        console.log(item)
+        console.log(orgrepos)
         for( const orgrepo of orgrepos){
       
           orgRepoName.push(orgrepo);
+          console.log(orgRepoName)
+          
         }
        }
        for(const item of orgRepoName){
