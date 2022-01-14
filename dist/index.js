@@ -13426,7 +13426,7 @@ for(const organization of organizationlist){
                     orgrepo.push(name);
                   })
               
-                  
+                  let orreposecret = [];
                   let reposec = [];
                   let secretlist = [];
                   let repocont = [];
@@ -13437,7 +13437,7 @@ for(const organization of organizationlist){
                       console.log(reposec,"repository sec")
                   //     console.log(secret,"secrets organization")
                    //    console.log(orreposecret,"repository secrets")
-                        var orreposecret = [];
+                        
                         reposec.map(({name}) => {
                           console.log(name,"repsec")
                           orreposecret.push(name);
@@ -13454,7 +13454,7 @@ for(const organization of organizationlist){
                         repoconts.map(({name}) =>{
                         console.log(name,"contributor")
                         repocont.push(name);
-                        finaloutput.push({name:orepo,maintainer:name,"org-secrets-overriden":orreposecret,message:"org secrets overriden"})
+                        finaloutput.push({name:orepo,maintainer:name,"org-secrets-overriden":secret,message:"org secrets overriden"})
                         })
                        } 
          }
