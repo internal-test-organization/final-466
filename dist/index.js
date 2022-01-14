@@ -13426,7 +13426,7 @@ for(const organization of organizationlist){
                     orgrepo.push(name);
                   })
               
-                  let orreposecret = [];
+                  
                   let reposec = [];
                   let secretlist = [];
                   let repocont = [];
@@ -13437,7 +13437,7 @@ for(const organization of organizationlist){
                       console.log(reposec,"repository sec")
                   //     console.log(secret,"secrets organization")
                    //    console.log(orreposecret,"repository secrets")
-
+                        var orreposecret = [];
                         reposec.map(({name}) => {
                           console.log(name,"repsec")
                           orreposecret.push(name);
