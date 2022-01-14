@@ -86,7 +86,6 @@ for(const organization of organizationlist){
             repoconts = await orgActivity1.getRepoContributor(organization,orepo)
             repoconts.map(({name}) =>{
             console.log(name,"contributor")
-            repocont.push(name);
             finaloutput.push({name:orepo,maintainer:name,"org-secrets-overriden":secret,message:"org secrets overriden"})
             })
          } 
@@ -104,8 +103,7 @@ for(const organization of organizationlist){
       //             let orreposecret = [];
       //             let reposec = [];
       //             let secretlist = [];
-      //             let repocont = [];
-      //             let repoconts = [];
+      //             
       //             for(const orepo  of orgrepo){
       //                 reposec = await orgActivity1.getOrgRepoSecret(organization,orepo);
                       
