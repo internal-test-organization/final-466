@@ -13412,23 +13412,35 @@ for(const organization of organizationlist){
         orgreposecrets = await orgActivity1.getOrgRepoSecret(organization,item);
         for(const orgreposecret of orgreposecrets) {
                 orgRepoSecret.push(orgreposecret.name);
+                for(const orepo  of orgRepoName){
+                  for(const secret  of orgSecret){
+                    console.log(orepo)
+                    console.log(secret)
+                    if (orgRepoSecret === secret){
+                      console.log(`Both ${secret} and ${orgRepoSecret} are same.......Retreive repo secret`)
+                      repoconts = await orgActivity1.getRepoContributor(organization,orepo)
+                      repoconts.map(({name}) =>{
+                      console.log(name,"contributor")
+                      finaloutput.push({name:orepo,maintainer:name,"org-secrets-overriden":secret,message:"org secrets overriden"})
+                      })
+                   } 
         }
        }
        console.log(orgRepoSecret.some(item => orgSecret.includes(item)))
        console.log(orgRepoSecret)
        console.log(orgSecret)
-       for(const orepo  of orgRepoName){
-        for(const secret  of orgSecret){
-          console.log(orepo)
-          console.log(secret)
-          if (orgRepoSecret.includes(secret)){
-            console.log(`Both ${secret} and ${orgRepoSecret} are same.......Retreive repo secret`)
-            repoconts = await orgActivity1.getRepoContributor(organization,orepo)
-            repoconts.map(({name}) =>{
-            console.log(name,"contributor")
-            finaloutput.push({name:orepo,maintainer:name,"org-secrets-overriden":secret,message:"org secrets overriden"})
-            })
-         } 
+      //  for(const orepo  of orgRepoName){
+      //   for(const secret  of orgSecret){
+      //     console.log(orepo)
+      //     console.log(secret)
+      //     if (orgRepoSecret.includes(secret)){
+      //       console.log(`Both ${secret} and ${orgRepoSecret} are same.......Retreive repo secret`)
+      //       repoconts = await orgActivity1.getRepoContributor(organization,orepo)
+      //       repoconts.map(({name}) =>{
+      //       console.log(name,"contributor")
+      //       finaloutput.push({name:orepo,maintainer:name,"org-secrets-overriden":secret,message:"org secrets overriden"})
+      //       })
+      //    } 
          
        
       //  for(const secret of orgSecret) {
