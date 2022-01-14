@@ -13402,14 +13402,14 @@ for(const organization of organizationlist){
         console.log(orgrepos)
         for( const orgrepo of orgrepos){
       
-          orgRepoName.push(orgrepo);
+          orgRepoName.push(orgrepo.name);
           console.log(orgRepoName)
           
         }
        }
        for(const item of orgRepoName){
         console.log(item,"organization repo secret")
-        orgreposecrets = await orgActivity1.getOrgRepoSecret(organization,item.name);
+        orgreposecrets = await orgActivity1.getOrgRepoSecret(organization,item);
         for(const orgreposecret of orgreposecrets) {
                 orgRepoSecret.push(orgreposecret.name);
         }
