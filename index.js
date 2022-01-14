@@ -97,14 +97,14 @@ for(const organization of organizationlist){
                       console.log(reposec,"repository sec")
                   //     console.log(secret,"secrets organization")
                    //    console.log(orreposecret,"repository secrets")
-          
-                            
+
+                        reposec.map(({name}) => {
+                          console.log(name,"repsec")
+                          orreposecret.push(name);
+                        })    
                        
                     }
-                    reposec.map(({name}) => {
-                      console.log(name,"repsec")
-                      orreposecret.push(name);
-                    })
+                    
                    for(const orepo  of orgrepo){
                       console.log(orreposecret,"org repos secret")
                       console.log(secret,"organization secret")
