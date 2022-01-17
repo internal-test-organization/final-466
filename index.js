@@ -52,100 +52,111 @@ for(const organization of organizationlist){
   if(orgsComments.status !== 'error') {
        
        secrets = await orgActivity1.getOrgSecrets(organization);
-       secrets.map(({name}) => {
-         console.log(name)
-         orgSecret.push(name);  
-       })
-       for(const item of orgSecret){
-        orgrepos = await orgActivity1.getOrgSecretSelectedRepo(organization,item);
-        console.log(item,"organization repo")
-        console.log(orgrepos)
+
+        for(const secret of secrets){
+        orgrepos = await orgActivity1.getOrgSecretSelectedRepo(organization,secret.name); 
         for( const orgrepo of orgrepos){
+         orgreposecrets = await orgActivity1.getOrgRepoSecret(organization,orgrepo.name);
+         for(const orgreposecret of orgreposecrets) {
+                console.log(`Both ${secret.name} and ${orgreposecret.name}`)
+               if (orgreposecret.name === secret.name){
+                 console.log(`Both ${secret.name} and ${orgreposecret.name} are same.......Retreive repo secret`)
+                 repoconts = await orgActivity1.getRepoContributor(organization,orgrepo.name)
+                 repoconts.map((item) =>{
+                 console.log(item.name,"contributor")
+                 finaloutput.push({name:orgrepo.name,maintainer:item.name,"org-secrets-overriden":secret.name,message:"org secrets overriden"})
+                 })
+              } 
+          }
+       }
+      }
+
+    
+  //      secrets.map(({name}) => {
+  //        console.log(name)
+  //        orgSecret.push(name);  
+  //      })
+  //      for(const item of orgSecret){
+  //       orgrepos = await orgActivity1.getOrgSecretSelectedRepo(organization,item);
+  //       console.log(item,"organization repo")
+  //       console.log(orgrepos)
+  //       for( const orgrepo of orgrepos){
       
-          orgRepoName.push(orgrepo.name);
-          console.log(orgRepoName)
+  //         orgRepoName.push(orgrepo);
+  //         console.log(orgRepoName)
           
-        }
-       }
-       for(const item of orgRepoName){
-        console.log(item,"organization repo secret")
-        orgreposecrets = await orgActivity1.getOrgRepoSecret(organization,item);
-        for(const orgreposecret of orgreposecrets) {
-                orgRepoSecret.push(orgreposecret.name);
-                for(const orepo  of orgRepoName){
-                  for(const secret  of orgSecret){
-                    console.log(orepo)
-                    console.log(secret)
-                    if (orgRepoSecret === secret){
-                      console.log(`Both ${secret} and ${orgRepoSecret} are same.......Retreive repo secret`)
-                      repoconts = await orgActivity1.getRepoContributor(organization,orepo)
-                      repoconts.map(({name}) =>{
-                      console.log(name,"contributor")
-                      finaloutput.push({name:orepo,maintainer:name,"org-secrets-overriden":secret,message:"org secrets overriden"})
-                      })
-                   } 
-        }
-       }
-       console.log(orgRepoSecret.some(item => orgSecret.includes(item)))
-       console.log(orgRepoSecret)
-       console.log(orgSecret)
-      //  for(const orepo  of orgRepoName){
-      //   for(const secret  of orgSecret){
-      //     console.log(orepo)
-      //     console.log(secret)
-      //     if (orgRepoSecret.includes(secret)){
-      //       console.log(`Both ${secret} and ${orgRepoSecret} are same.......Retreive repo secret`)
-      //       repoconts = await orgActivity1.getRepoContributor(organization,orepo)
-      //       repoconts.map(({name}) =>{
-      //       console.log(name,"contributor")
-      //       finaloutput.push({name:orepo,maintainer:name,"org-secrets-overriden":secret,message:"org secrets overriden"})
-      //       })
-      //    } 
-         
+  //       }
+  //      }
+  //      for(const item of orgRepoName){
+  //       console.log(item.name,"organization repo secret")
+  //       orgreposecrets = await orgActivity1.getOrgRepoSecret(organization,item.name);
+  //       for(const orgreposecret of orgreposecrets) {
+  //               orgRepoSecret.push(orgreposecret);
+  //       }
+  //      }
+  //      console.log(orgRepoSecret.some(item => orgSecret.includes(item)))
+  //      console.log(orgRepoSecret)
+  //      console.log(orgSecret)
+  //      for(const orepo  of orgRepoName){
+  //       for(const secret  of orgSecret){
+  //       if (orgRepoSecret.includes(secret)){
+  //         console.log(`Both ${secret} and ${orreposecret} are same.......Retreive repo secret`)
+  //         repoconts = await orgActivity1.getRepoContributor(organization,orepo)
+  //         repoconts.map(({name}) =>{
+  //         console.log(name,"contributor")
+  //         repocont.push(name);
+  //         finaloutput.push({name:orepo,maintainer:name,"org-secrets-overriden":secret,message:"org secrets overriden"})
+  //         })
+  //        }
+  //       }
+  //     }
+
        
-      //  for(const secret of orgSecret) {
-      //             orgrepos = await orgActivity1.getOrgSecretSelectedRepo(organization,secret);
-      //             console.log(orgrepos)
-      //             console.log(secret,"orgsecret")
-      //             orgrepos.map(({name}) => {
-      //               console.log(name)
-      //               orgrepo.push(name);
-      //             })
+  //     //  for(const secret of orgSecret) {
+  //     //             orgrepos = await orgActivity1.getOrgSecretSelectedRepo(organization,secret);
+  //     //             console.log(orgrepos,"secret selected repo")
+  //     //             console.log(secret,"orgsecret")
+  //     //             orgrepos.map(({name}) => {
+  //     //               console.log(name)
+  //     //               orgrepo.push(name);
+  //     //             })
               
-      //             let orreposecret = [];
-      //             let reposec = [];
-      //             let secretlist = [];
-      //             
-      //             for(const orepo  of orgrepo){
-      //                 reposec = await orgActivity1.getOrgRepoSecret(organization,orepo);
+  //     //             let orreposecret = [];
+  //     //             let reposec = [];
+  //     //             let secretlist = [];
+  //     //             let repocont = [];
+  //     //             let repoconts = [];
+  //     //             for(const orepo  of orgrepo){
+  //     //                 reposec = await orgActivity1.getOrgRepoSecret(organization,orepo);
                       
-      //                 console.log(reposec,"repository sec")
-      //             //     console.log(secret,"secrets organization")
-      //              //    console.log(orreposecret,"repository secrets")
-                        
-      //                   reposec.map(({name}) => {
-      //                     console.log(name,"repsec")
-      //                     orreposecret.push(name);
-      //                   })    
+  //     //                 console.log(reposec,"repository sec")
+  //     //             //     console.log(secret,"secrets organization")
+  //     //              //    console.log(orreposecret,"repository secrets")
+          
+                            
                        
-      //               }
-                    
-                  //  for(const orepo  of orgrepo){
-                  //     console.log(orreposecret,"org repos secret")
-                  //     console.log(secret,"organization secret")
-                  //     if (orreposecret.includes(secret)){
-                  //       console.log(`Both ${secret} and ${orreposecret} are same.......Retreive repo secret`)
-                  //       repoconts = await orgActivity1.getRepoContributor(organization,orepo)
-                  //       repoconts.map(({name}) =>{
-                  //       console.log(name,"contributor")
-                  //       repocont.push(name);
-                  //       finaloutput.push({name:orepo,maintainer:name,"org-secrets-overriden":secret,message:"org secrets overriden"})
-                  //       })
-                  //      } 
-         }
+  //     //               }
+  //     //               reposec.map(({name}) => {
+  //     //                 console.log(name,"repsec")
+  //     //                 orreposecret.push(name);
+  //     //               })
+  //                 //  for(const orepo  of orgrepo){
+  //                 //     console.log(orreposecret,"org repos secret")
+  //                 //     console.log(secret,"organization secret")
+  //                 //     if (orreposecret.includes(secret)){
+  //                 //       console.log(`Both ${secret} and ${orreposecret} are same.......Retreive repo secret`)
+  //                 //       repoconts = await orgActivity1.getRepoContributor(organization,orepo)
+  //                 //       repoconts.map(({name}) =>{
+  //                 //       console.log(name,"contributor")
+  //                 //       repocont.push(name);
+  //                 //       finaloutput.push({name:orepo,maintainer:name,"org-secrets-overriden":secret,message:"org secrets overriden"})
+  //                 //       })
+  //                 //      } 
+  //       // }
                       
-       }  
-  }
+  //      //}  
+           
+   }
 } 
 saveIntermediateData(outputDir, finaloutput);
 
