@@ -13055,8 +13055,8 @@ module.exports = class Organization {
       });
     }
 
-    getOrgSecretSelectedRepo(org,secret) {
-      return this.octokit.paginate('GET /orgs/{org}/actions/secrets/{secret_name}/repositories', {org: org, secret_name: secret, per_page: 100})
+    getOrgRepo(org,secret) {
+      return this.octokit.paginate('GET /orgs/{org}/repos', {org: org, per_page: 100})
       .then(orgsecrepos => {
         console.log(`Processing ${orgsecrepos.length} repos contributores`);
         return orgsecrepos.map(orgsecrepo => {
@@ -13379,10 +13379,10 @@ let organizationlist = organizationinp.split(',');
 let repos = [];
 let members = [];
 let finaloutput = [];
-let orgrepo = [];
+let secretorg = [];
 let orgrepos = [];
 let orgSecret = [];
-let orgRepoSecret = [];
+let reposecret = [];
 let orgRepoName = [];
 
 console.log(organizationlist)
@@ -13392,11 +13392,19 @@ for(const organization of organizationlist){
   if(orgsComments.status !== 'error') {
        
        secrets = await orgActivity1.getOrgSecrets(organization);
+       secrets.map(({name}) => {
+        console.log(name)
+        secretorg.push(name);
+       })
 
         for(const secret of secrets){
-        orgrepos = await orgActivity1.getOrgSecretSelectedRepo(organization,secret.name); 
+        orgrepos = await orgActivity1.getOrgRepo(organization); 
         for( const orgrepo of orgrepos){
          orgreposecrets = await orgActivity1.getOrgRepoSecret(organization,orgrepo.name);
+         orgreposecrets.map(({name}) => {
+          console.log(name)
+          reposecret.push(name);
+         })
          for(const orgreposecret of orgreposecrets) {
                 console.log(`Both ${secret.name} and ${orgreposecret.name}`)
                if (orgreposecret.name === secret.name){
